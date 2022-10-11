@@ -32,8 +32,33 @@ const NavButton = ({ title, icon, color, dotColor, customFunc }) => (
 );
 
 const Navbar = () => {
-	const { activeMenu, setActiveMenu, isClicked, setIsClicked } =
-		useStateContext();
+	const {
+		activeMenu,
+		setActiveMenu,
+		isClicked,
+		setIsClicked,
+		screenSize,
+		setScreenSize,
+	} = useStateContext();
+
+	// Track window size to hide/show sidebar
+	useEffect(() => {
+		const handleResize = () => setScreenSize(window.innerWidth);
+		window.addEventListener("resize", handleResize);
+
+		handleResize();
+
+		// Remove event listener
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	useEffect(() => {
+		if (screenSize <= 900) {
+			setActiveMenu(false);
+		} else {
+			setActiveMenu(true);
+		}
+	}, [screenSize]);
 
 	return (
 		<div className="flex justify-between p-2 md:mx-6 relative">
@@ -83,7 +108,6 @@ const Navbar = () => {
 				{isClicked.chat && <Chat />}
 				{isClicked.notification && <Notification />}
 				{isClicked.userProfile && <UserProfile />}
-
 			</div>
 		</div>
 	);
