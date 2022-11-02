@@ -38,6 +38,7 @@ const Navbar = () => {
 		setIsClicked,
 		screenSize,
 		setScreenSize,
+		currentColor,
 	} = useStateContext();
 
 	// Track window size to hide/show sidebar
@@ -64,7 +65,7 @@ const Navbar = () => {
 			<NavButton
 				title="Menu"
 				customFunc={() => setActiveMenu(!activeMenu)}
-				color="blue"
+				color={currentColor}
 				icon={<AiOutlineMenu />}
 			/>
 
@@ -72,20 +73,20 @@ const Navbar = () => {
 				<NavButton
 					title="Cart"
 					customFunc={() => handleClick("cart")}
-					color="blue"
+					color={currentColor}
 					icon={<FiShoppingCart />}
 				/>
 				<NavButton
 					title="Chat"
 					customFunc={() => handleClick("chat")}
-					color="blue"
+					color={currentColor}
 					dotColor="#03C9D7"
 					icon={<BsChatLeft />}
 				/>
 				<NavButton
 					title="Notifications"
 					customFunc={() => handleClick("notification")}
-					color="blue"
+					color={currentColor}
 					dotColor="#03C9D7"
 					icon={<RiNotification3Line />}
 				/>

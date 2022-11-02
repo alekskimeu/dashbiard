@@ -11,7 +11,7 @@ import { itemClick, itemsToOrder } from "@syncfusion/ej2/treemap";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-	const { activeMenu, setActiveMenu, screenSize, setScreenSize } =
+	const { activeMenu, setActiveMenu, screenSize, setScreenSize, currentColor } =
 		useStateContext();
 
 	const handleCloseSidebar = () => {
@@ -59,6 +59,9 @@ const Sidebar = () => {
 										className={({ isActive }) =>
 											isActive ? activeLink : normalLink
 										}
+										style={({ isActive }) => ({
+											backgroundColor: isActive ? currentColor : "",
+										})}
 									>
 										{link.icon}
 										<span className="capitalize">{link.name}</span>
